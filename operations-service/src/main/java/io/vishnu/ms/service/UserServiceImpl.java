@@ -40,4 +40,15 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = userRepository.findById(userId);
         return  null;
     }
+
+    @Override
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void removeUserById(long userId) {
+        userRepository.deleteById(userId);
+    }
+
 }

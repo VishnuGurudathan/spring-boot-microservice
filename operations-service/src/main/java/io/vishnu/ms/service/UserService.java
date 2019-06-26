@@ -10,7 +10,27 @@ import java.util.List;
  * @author vishnu.g
  */
 public interface UserService {
-    User save(User user);
+    /**
+     *
+     * @return
+     */
     List<User> findAllUsers();
+
+    /**
+     *
+     * @param userId
+     * @return
+     */
     User getUserById(long userId);
+
+    /**
+     * Save user {@link User}
+     * @param user
+     * @return
+     */
+    User save(User user);
+
+    void updateUser(User user);
+
+    void removeUserById(long userId);
 }

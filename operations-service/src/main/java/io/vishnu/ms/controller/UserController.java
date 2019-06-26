@@ -39,7 +39,7 @@ public class UserController {
         long now = System.currentTimeMillis();
         logger.info("service '" + Thread.currentThread().getStackTrace()[1].getMethodName() +
                 "' completed after " + (System.currentTimeMillis() - now) + " ms");
-        return Mono.just(Arrays.asList("Vishnu", "Siva"));
+        return Mono.just(userService.findAllUsers());
     }
 
     @GetMapping("/{id}")
