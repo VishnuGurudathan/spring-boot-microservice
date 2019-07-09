@@ -1,0 +1,35 @@
+#This configuration file will hold common configs to be shared among all files
+#eureka:
+#  instance:
+#    prefer-ip-address: false
+#  client:
+#    healthcheck:
+#       enabled: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    healthcheck:
+      enabled: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+
+#security:
+#  oauth2:
+#    resource:
+#      user-info-uri: http://localhost:8080/uaa/user/current
+#      token-info-uri: http://localhost:8080/uaa/oauth/check_token
+
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
