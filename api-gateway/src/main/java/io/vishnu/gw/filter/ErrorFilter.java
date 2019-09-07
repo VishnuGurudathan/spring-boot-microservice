@@ -37,7 +37,7 @@ public class ErrorFilter extends ZuulFilter {
         HttpServletResponse response = ctx.getResponse();
         HttpServletRequest request = ctx.getRequest();
 
-        logger.info("response status for request {} is {}",request.getRequestURI().toString(), response.getStatus());
+        logger.info("response status for request {} is {}",request.getRequestURI(), response.getStatus());
 
         return null;
     }

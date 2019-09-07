@@ -30,12 +30,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
+    @RequestMapping("/status")
     public String defaultRoute() {
         return "Hello from Operations Service running at port: " + env.getProperty("local.server.port");
     }
     @GetMapping("/all-users")
-    public Mono getallUsers()throws Exception {
+    public Mono getallUsers() {
         long now = System.currentTimeMillis();
         logger.info("service '" + Thread.currentThread().getStackTrace()[1].getMethodName() +
                 "' completed after " + (System.currentTimeMillis() - now) + " ms");
@@ -44,12 +44,12 @@ public class UserController {
 
     @GetMapping("/{id}")
     public Mono getUser(@PathVariable("id") long userId) {
-        System.out.println("i am user : " + userId);
+        System.err.println("i am user : " + userId);
         User userEntity = userService.getUserById(userId);
         return Mono.just(userEntity);
     }
 
-    @PostMapping(path="/save", consumes = "application/json")
+    @PostMapping(path="/", consumes = "application/json")
     public Mono saveUser(@RequestBody UserDetailsDto user) {
         User userEntity = new User();
         BeanUtils.copyProperties(user, userEntity);

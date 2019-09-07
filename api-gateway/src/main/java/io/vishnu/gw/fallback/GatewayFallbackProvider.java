@@ -20,7 +20,7 @@ import java.io.InputStream;
  * @author vishnu.g
  */
 /*
- * This is general fallback provider of gateway. We can provide individual fallback provider for each microservice based
+ * This is general fallback provider of gateway. We can provide individual fallback provider for each micro-service based
  * on route.
  */
 @Component
@@ -44,7 +44,7 @@ public class GatewayFallbackProvider implements FallbackProvider {
     }
 
 
-    public ClientHttpResponse fallbackResponse() {
+    private ClientHttpResponse fallbackResponse() {
         return response(HttpStatus.INTERNAL_SERVER_ERROR);
     }
     private ClientHttpResponse response(final HttpStatus status) {

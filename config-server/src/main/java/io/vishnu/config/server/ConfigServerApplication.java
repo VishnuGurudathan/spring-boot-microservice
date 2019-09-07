@@ -1,4 +1,4 @@
-package io.vishnu.config.configserver;
+package io.vishnu.config.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

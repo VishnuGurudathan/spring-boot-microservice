@@ -35,7 +35,7 @@ public class PreFilter extends ZuulFilter {
     @Override
     public Object run() throws ZuulException {
         HttpServletRequest request = RequestContext.getCurrentContext().getRequest();
-        logger.info("{} request to {}",request.getMethod(), request.getRequestURI().toString());
+        logger.info("{} request to {}",request.getMethod(), request.getRequestURI());
         return null;
     }
 }

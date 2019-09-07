@@ -1,4 +1,4 @@
-#This file is the entrypoint for spring to know where to look for the configuration file and hold the initial configuration
+#This file is the entry point for spring to know where to look for the configuration file and hold the initial configuration
 
 spring:
   application:
