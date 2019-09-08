@@ -1,3 +1,5 @@
+#server:
+#  port: ${PORT:8071}
 #This file is the entry point for spring to know where to look for the configuration file and hold the initial configuration
 
 spring:
@@ -9,3 +11,14 @@ spring:
       fail-fast: true #the service will not run if it can't reach the config-service
       password: 1234 #password of the config-service
       username: user #username of the config-service
+  kafka:
+     bootstrap-servers: localhost:9092
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: no.replay.0testing@gmail.com
+    password: Test@123
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true

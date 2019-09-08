@@ -1,5 +1,6 @@
 package io.vishnu.ms.service;
 
+import io.vishnu.ms.dto.UserDetailsDto;
 import io.vishnu.ms.exception.UserNotFoundException;
 import io.vishnu.ms.model.User;
 import io.vishnu.ms.repository.UserRepository;
@@ -37,7 +38,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         User createdUser = userRepository.save(user);
-        send(createdUser);
+        UserDetailsDto detailsDto = new UserDetailsDto(createdUser.getId(), createdUser.getName(), createdUser.getPhoneNumber(), createdUser.getEmail());
+        send(detailsDto);
           // kafkaTemplate.send(TOPIC, createdUser);
         return createdUser;
     }

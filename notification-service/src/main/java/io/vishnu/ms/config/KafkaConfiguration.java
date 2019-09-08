@@ -1,6 +1,6 @@
 package io.vishnu.ms.config;
 
-import io.vishnu.ms.dto.UserDto;
+import io.vishnu.ms.dto.UserDetailsDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -36,14 +36,14 @@ public class KafkaConfiguration {
     }
 
     @Bean
-    public ConsumerFactory<String, UserDto> consumerFactory() {
+    public ConsumerFactory<String, UserDetailsDto> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs(), new StringDeserializer(),
-                new JsonDeserializer<>(UserDto.class));
+                new JsonDeserializer<>(UserDetailsDto.class));
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, UserDto> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, UserDto> factory =
+    public ConcurrentKafkaListenerContainerFactory<String, UserDetailsDto> kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserDetailsDto> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
 

@@ -5,15 +5,15 @@ package io.vishnu.ms.dto;
  *
  * @author vishnu.g
  */
-public class UserDto {
+public class UserDetailsDto {
     private long id;
     private String name;
     private String phoneNumber;
     private String email;
 
-    public UserDto() {}
+    public UserDetailsDto() {}
 
-    public UserDto(long id, String name, String phoneNumber, String email) {
+    public UserDetailsDto(long id, String name, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -54,7 +54,7 @@ public class UserDto {
 
     @Override
     public String toString() {
-        return "UserDto{" +
+        return "UserDetailsDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

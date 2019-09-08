@@ -1,9 +1,9 @@
 package io.vishnu.ms.service;
 
-import io.vishnu.ms.dto.UserDto;
-import org.slf4j.LoggerFactory;
+import io.vishnu.ms.dto.UserDetailsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -12,6 +12,7 @@ import java.util.concurrent.CountDownLatch;
  *
  * @author vishnu.g
  */
+@Component
 public class Receiver {
     //private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
 
@@ -27,7 +28,7 @@ public class Receiver {
 
 
     @KafkaListener(topics = "TOPIC_USER_CREATED")
-    public void receiveFoo(UserDto userDto) {
+    public void receiveFoo(UserDetailsDto userDto) {
         System.out.println("userDto = [" + userDto + "]");
         emailService.sendSimpleMessage(userDto);
         latch.countDown();

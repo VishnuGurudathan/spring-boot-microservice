@@ -1,6 +1,6 @@
 package io.vishnu.ms.service;
 
-import io.vishnu.ms.dto.UserDto;
+import io.vishnu.ms.dto.UserDetailsDto;
 
 /**
  * spring-boot-microservice : io.vishnu.ms.service
@@ -8,5 +8,5 @@ import io.vishnu.ms.dto.UserDto;
  * @author vishnu.g
  */
 public interface EmailService {
-    void sendSimpleMessage(UserDto input);
+    void sendSimpleMessage(UserDetailsDto input);
 }
