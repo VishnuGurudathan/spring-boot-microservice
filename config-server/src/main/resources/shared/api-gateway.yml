@@ -1,12 +1,7 @@
-#eureka:
-#    client:
-#        service-url:
-#            default-zone: http://localhost:8761/eureka
 server:
-    port: ${PORT:0}         # by giving default port as 0, spring boot will automatically pick the available ports from OS and assigns to the application
-spring:
-    application:
-        name: api-gateway
+    port: ${PORT:8070}
+            # by giving default port as 0, spring boot will automatically pick the available ports from OS and assigns to the application
+
 zuul:
     ignored-services: '*'
     prefix: /api

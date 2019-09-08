@@ -1,6 +1,7 @@
 package io.vishnu.ms.service;
 
 import io.vishnu.ms.model.User;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -17,7 +18,6 @@ public interface UserService {
     List<User> findAllUsers();
 
     /**
-     *
      * @param userId
      * @return
      */

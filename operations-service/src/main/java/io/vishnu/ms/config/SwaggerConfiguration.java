@@ -19,7 +19,7 @@ import java.util.Collections;
  */
 //@Configuration
 //@EnableSwagger2
-public class SwaggerConfig {
+public class SwaggerConfiguration {
     /*
      * We can think of moving swagger configuration to a util-project and add that dependency
      * to other projects.

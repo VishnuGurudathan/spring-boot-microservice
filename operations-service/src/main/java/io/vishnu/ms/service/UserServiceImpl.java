@@ -1,14 +1,20 @@
 package io.vishnu.ms.service;
 
+import io.vishnu.ms.exception.UserNotFoundException;
 import io.vishnu.ms.model.User;
 import io.vishnu.ms.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.KafkaHeaders;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * spring-boot-microservice : io.vishnu.ms.service
@@ -23,9 +29,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private KafkaTemplate<String, ?> kafkaTemplate;
+
+    private static final String TOPIC = "TOPIC_USER_CREATED";
+
     @Override
     public User save(User user) {
-        return userRepository.save(user);
+        User createdUser = userRepository.save(user);
+        send(createdUser);
+          // kafkaTemplate.send(TOPIC, createdUser);
+        return createdUser;
+    }
+
+    // Move to message service.
+    private void send(Object payload) {
+
+         kafkaTemplate
+                .send(MessageBuilder.withPayload(payload).setHeader(KafkaHeaders.TOPIC, TOPIC).build());
+
+
     }
 
     @Override
@@ -37,8 +60,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(long userId) {
-        Optional<User> user = userRepository.findById(userId);
-        return  null;
+        System.out.println("userId = [" + userId + "]");
+        return userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
     }
 
     @Override

@@ -1,34 +1,24 @@
-package io.vishnu.ms.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.*;
+package io.vishnu.ms.dto;
 
 /**
  * spring-boot-microservice : io.vishnu.ms.model
  *
  * @author vishnu.g
  */
-@Entity
-@Table(name = "user_details")
-@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
-        allowGetters = true)
-public class User extends Auditable<String>{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private long id;
-
-    @Column(name="name")
     private String name;
-
-    @Column(name="phone_number")
     private String phoneNumber;
-
-    @Column(name="email", nullable=false, length=200, unique = true)
     private String email;
 
+    public UserDto() {}
+
+    public UserDto(long id, String name, String phoneNumber, String email) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public long getId() {
         return id;
@@ -64,7 +54,7 @@ public class User extends Auditable<String>{
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDto{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * spring-boot-microservice : io.vishnu.gw.controller
@@ -35,22 +36,24 @@ public class UserController {
         return "Hello from Operations Service running at port: " + env.getProperty("local.server.port");
     }
     @GetMapping("/all-users")
-    public Mono getallUsers() {
+    public List<User> getallUsers() {
         long now = System.currentTimeMillis();
         logger.info("service '" + Thread.currentThread().getStackTrace()[1].getMethodName() +
                 "' completed after " + (System.currentTimeMillis() - now) + " ms");
-        return Mono.just(userService.findAllUsers());
+        return userService.findAllUsers();
     }
 
     @GetMapping("/{id}")
-    public Mono getUser(@PathVariable("id") long userId) {
+    public User getUser(@PathVariable("id") long userId) {
         System.err.println("i am user : " + userId);
+        //return this.userService.getUserById(userId);
         User userEntity = userService.getUserById(userId);
-        return Mono.just(userEntity);
+        System.out.println("user = [" + userEntity + "]");
+        return userEntity;
     }
 
     @PostMapping(path="/", consumes = "application/json")
-    public Mono saveUser(@RequestBody UserDetailsDto user) {
+    public User saveUser(@RequestBody UserDetailsDto user) {
         User userEntity = new User();
         BeanUtils.copyProperties(user, userEntity);
 
@@ -59,21 +62,28 @@ public class UserController {
 //                .buildAndExpand(user.getId())
 //                .toUri();
         // TODO : Need to create a response builder and send all response through that.
-        return Mono.just(userService.save(userEntity));
+        return userService.save(userEntity);
     }
-
+/*
     @PutMapping("/update/{id}")
     public Mono updateUser(@PathVariable("id") long userId, @RequestBody UserDetailsDto user) {
         return Mono.just(user);
+        Student studentToUpdate = repository.findById(id).orElseThrow(StudentNotFoundException::new);
+
+        studentToUpdate.setFirstName(student.getFirstName());
+        studentToUpdate.setLastName(student.getLastName());
+        studentToUpdate.setYear(student.getYear());
+
+        return repository.save(studentToUpdate);
     }
 
     @PatchMapping("/patch/{id}")
     public Mono patchUser(@PathVariable("id") long userId, @RequestBody UserDetailsDto user) {
         return Mono.just(user);
     }
-
+*/
     @DeleteMapping("/delete/{id}")
-    public Mono deleteUser(@PathVariable("id") long userId) {
-        return Mono.empty();
+    public void deleteUser(@PathVariable("id") long userId) {
+        userService.removeUserById(userId);
     }
 }
