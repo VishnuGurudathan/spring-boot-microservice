@@ -2,8 +2,21 @@ server:
     port: ${PORT:8070}
             # by giving default port as 0, spring boot will automatically pick the available ports from OS and assigns to the application
 
-zuul:
-    ignored-services: '*'
+#Metrics related configurations
+management:
+    metrics:
+        export:
+            prometheus:
+                enabled: true
+    endpoints:
+        metrics:
+            enabled: true
+        web:
+            exposure:
+                include: metrics,prometheus
+        prometheus:
+            enabled: true
+
     prefix: /api
     routes:
         gallery-service:

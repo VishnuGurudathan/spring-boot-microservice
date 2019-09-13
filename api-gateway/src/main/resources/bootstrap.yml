@@ -1,4 +1,12 @@
 #This file is the entry point for spring to know where to look for the configuration file and hold the initial configuration
+#management:
+#  port: 8081
+#  endpoint:
+#    gateway:
+#      enabled: true # default value
+#    web:
+#      exposure:
+#        include: gateway
 
 spring:
   application:
@@ -9,3 +17,11 @@ spring:
       fail-fast: true #the service will not run if it can't reach the config-service
       password: 1234 #password of the config-service
       username: user #username of the config-service
+
+
+# Spring Security Default user name and password
+#  security:
+#    user:
+#      name: actuator
+#      password: admin
+#      roles: ACTUATOR_ADMIN
