@@ -22,20 +22,15 @@ public class EmailServiceImpl implements EmailService {
     public void sendSimpleMessage(UserDetailsDto input) {
         try {
 
-//            Mail newMail = new Mail();
-//            newMail.setTo(input.getUsername());
-//            newMail.setSubject("TestSubject");
-//            newMail.setText("TestText");
-
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo("vishnu.g@experionglobal.com");
+            message.setTo(input.getEmail());
             message.setSubject("Testing subject");
             message.setText("Testing mail");
 
 //            mailRepository.save(newMail);
             emailSender.send(message);
-        } catch (MailException exception) {
-            exception.printStackTrace();
+        } catch (MailException exce) {
+            exce.printStackTrace();
         }
     }
 }

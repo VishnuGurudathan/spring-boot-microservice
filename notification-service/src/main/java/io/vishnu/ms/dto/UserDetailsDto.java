@@ -1,11 +1,16 @@
 package io.vishnu.ms.dto;
 
+import sun.print.resources.serviceui_it;
+
+import java.io.Serializable;
+
 /**
  * spring-boot-microservice : io.vishnu.ms.model
  *
  * @author vishnu.g
  */
-public class UserDetailsDto {
+public class UserDetailsDto implements Serializable {
+
     private long id;
     private String name;
     private String phoneNumber;

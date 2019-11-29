@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private KafkaTemplate<String, ?> kafkaTemplate;
+    private KafkaTemplate<String, UserDetailsDto> kafkaTemplate;
 
     private static final String TOPIC = "TOPIC_USER_CREATED";
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         User createdUser = userRepository.save(user);
         UserDetailsDto detailsDto = new UserDetailsDto(createdUser.getId(), createdUser.getName(), createdUser.getPhoneNumber(), createdUser.getEmail());
         send(detailsDto);
-          // kafkaTemplate.send(TOPIC, createdUser);
+        kafkaTemplate.send(TOPIC, detailsDto);
         return createdUser;
     }
 

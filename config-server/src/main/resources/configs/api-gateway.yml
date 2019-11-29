@@ -3,20 +3,21 @@ server:
             # by giving default port as 0, spring boot will automatically pick the available ports from OS and assigns to the application
 
 #Metrics related configurations
-management:
-    metrics:
-        export:
-            prometheus:
-                enabled: true
-    endpoints:
-        metrics:
-            enabled: true
-        web:
-            exposure:
-                include: metrics,prometheus
-        prometheus:
-            enabled: true
+#management:
+#    metrics:
+#        export:
+#            prometheus:
+#                enabled: true
+#    endpoints:
+#        metrics:
+#            enabled: true
+#        web:
+#            exposure:
+#                include: metrics,prometheus
+#        prometheus:
+#            enabled: true
 
+zuul:
     prefix: /api
     routes:
         gallery-service:
