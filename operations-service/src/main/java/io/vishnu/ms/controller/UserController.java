@@ -1,18 +1,23 @@
 package io.vishnu.ms.controller;
 
-import io.vishnu.ms.dto.UserDetailsDto;
-import io.vishnu.ms.model.User;
-import io.vishnu.ms.service.UserService;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
+import io.vishnu.ms.dto.UserDetailsDto;
+import io.vishnu.ms.model.User;
+import io.vishnu.ms.service.UserService;
 
 /**
  * spring-boot-microservice : io.vishnu.gw.controller
@@ -38,8 +43,8 @@ public class UserController {
     @GetMapping("/all-users")
     public List<User> getallUsers() {
         long now = System.currentTimeMillis();
-        logger.info("service '" + Thread.currentThread().getStackTrace()[1].getMethodName() +
-                "' completed after " + (System.currentTimeMillis() - now) + " ms");
+        // common format
+        logger.info("service '{}' completed after {} ms", Thread.currentThread().getStackTrace()[1].getMethodName(), (System.currentTimeMillis() - now));
         return userService.findAllUsers();
     }
 
